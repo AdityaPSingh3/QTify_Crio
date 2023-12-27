@@ -40,9 +40,10 @@ import React, { useState } from "react";
 import styles from "../Section/Section.module.css";
 import Card from "../Card/Card";
 import { CircularProgress } from "@mui/material";
+import Carousel from "../Carousel/Carousel";
 
 function Section({ title, data, type }) {
-  const [carouselToggle, setCarouselToggle] = useState(false);
+  const [carouselToggle, setCarouselToggle] = useState(true);
 
   const handleToggle = () => {
     setCarouselToggle((prevState) => !prevState);
@@ -66,7 +67,12 @@ function Section({ title, data, type }) {
                 <Card key={ele.id} data={ele} type={type} />
               ))}
             </div>
-          ) : null}
+          ) : (
+            <Carousel
+              data={data}
+              renderComponent={(data) => <Card data={data} type={type} />}
+            />
+          )}
         </div>
       )}
     </div>
